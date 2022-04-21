@@ -121,11 +121,13 @@ public abstract class BaseDAO<T> {
             int columnCount = rsmd.getColumnCount();
             while (rs.next()) {
                 T entity = (T) entityClass.newInstance();
+
                 for (int i = 0; i < columnCount; i++) {
                     String columnName = rsmd.getColumnName(i + 1);
                     Object columnValue = rs.getObject(i + 1);
                     setValue(entity, columnName, columnValue);
                 }
+                list.add(entity);
             }
         } catch (SQLException e) {
             e.printStackTrace();
