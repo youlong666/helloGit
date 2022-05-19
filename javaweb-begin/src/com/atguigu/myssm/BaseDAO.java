@@ -1,4 +1,4 @@
-package com.atguigu.dao.base;
+package com.atguigu.myssm;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -9,10 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseDAO<T> {
-    public final String URL = "jdbc:sqlserver://10.46.1.55:1433/Ignition_SCADA_test?useUnicode=true&characterEncoding=uft-8";
+//    public final String URL = "jdbc:sqlserver://10.46.1.55:1433;DatabaseName=Ignition_SCADA_test?useUnicode=true&characterEncoding=uft-8";
+    public final String URL = "jdbc:sqlserver://10.46.1.55:1433;DatabaseName=Ignition_SCADA_test";
     public final String USER = "scadatest";
     public final String PWD = "Cqst.2000";
-    public final String DRIVER = "com.sqlserver.jdbc.Driver";
+    public final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     Connection conn;
     PreparedStatement ps;
     ResultSet rs;
@@ -144,3 +145,4 @@ public abstract class BaseDAO<T> {
         return list;
     }
 }
+
