@@ -20,7 +20,7 @@ window.onload=function(){
 
 
 		//7.绑定删除小图标的点击事件
-		var img = cells[4].firstChild;
+		var img = cells[3].firstChild;
 		if(img && img.tagName=="IMG"){
 			//绑定单击事件
 			img.onclick = delFruit ;

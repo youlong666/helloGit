@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/index.css">
@@ -14,38 +14,17 @@
 						<th class="w20">数量</th>
 						<th>操作</th>
 					</tr>
-					<tr>
-						<td>苹果</td>
-						<td>5</td>
-						<td>20</td>
+					<tr th:if="${#lists.isEmpty(session.fruitList)}">
+						<td colspan="4">库存为空</td>
+					</tr>
+					<tr th:unless="${#lists.isEmpty(session.fruitList)}"
+						th:each="fruit:${session.fruitList}">
+						<td th:text="${fruit.name}">苹果</td>
+						<td th:text="${fruit.price}">5</td>
+						<td th:text="${fruit.count}">20</td>
 						<td><img src="imgs/del.jpg" class="delImg"/></td>
 					</tr>
-
 				</table>
-				<hr/>
-				<!--
-				<div id="add_fruit_div">
-					<table>
-						<tr>
-							<td>名称：</td>
-							<td><input type='text' id='fname'/></td>
-						</tr>
-						<tr>
-							<td>单价：</td>
-							<td><input type='text' id='price'/></td>
-						</tr>
-						<tr>
-							<td>数量：</td>
-							<td><input type='text' id='fcount'/></td>
-						</tr>
-						<tr>
-							<th colspan="2">
-								<input type='button' class="btn" value="添加"/>
-								<input type='button' class="btn" value="重填"/>
-							</th>
-						</tr>
-					</table>
-				</div> -->
 			</div>
 		</div>
 	</body>

@@ -3,6 +3,7 @@ package com.atguigu.fruit.servlets;
 import com.atguigu.fruit.dao.FruitDAO;
 import com.atguigu.fruit.dao.impl.FruitDAOImpl;
 import com.atguigu.fruit.pojo.Fruit;
+import com.atguigu.myssm.ViewBaseServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/index")
-public class IndexServlet extends HttpServlet {
+public class IndexServlet extends ViewBaseServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         FruitDAO fruitDAO = new FruitDAOImpl();
@@ -22,5 +23,10 @@ public class IndexServlet extends HttpServlet {
         List<Fruit> list = fruitDAO.queryAll(sql);
         HttpSession httpSession = req.getSession();
         httpSession.setAttribute("fruitList", list);
+        //此处视图名称是index
+        //thymeleaf将这个 视图名称 对应到 物理名称  上去
+        //逻辑视图名称： index
+        //物理视图名称： view-prefix + 逻辑视图名称 + view-suffix
+        super.processTemplate("index",req, resp);
     }
 }
